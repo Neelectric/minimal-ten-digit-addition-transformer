@@ -1,0 +1,12 @@
+[project]
+name = "minimal-ten-digit-addition-transformer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "asitop>=0.0.24",
+    "mlx>=0.31.2",
+    "mlx-lm>=0.31.3",
+    "numpy>=2.4.4",
+]

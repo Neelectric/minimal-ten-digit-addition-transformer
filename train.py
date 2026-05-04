@@ -12,10 +12,10 @@ from mlx.utils import tree_flatten
 from mlx_lm.models.qwen3 import Model, ModelArgs
 
 MODEL_DIM = 3
-ATTENTION_HEADS = 2
+ATTENTION_HEADS = 1
 KEY_VALUE_HEADS = 1
 HEAD_DIM = 4
-INTERMEDIATE_SIZE = 2
+INTERMEDIATE_SIZE = 3
 VOCAB_SIZE = 10
 OUTPUT_DIGITS = 11
 MAX_ADDEND = 10**10 - 1
@@ -25,10 +25,12 @@ MAX_STEPS = 45_001
 BATCH_SIZE = 128
 LR = 0.01
 
+NUM_LAYERS = 2
+
 model_args = ModelArgs(
     model_type="qwen3",
     hidden_size=MODEL_DIM,
-    num_hidden_layers=1,
+    num_hidden_layers=NUM_LAYERS,
     intermediate_size=INTERMEDIATE_SIZE,
     num_attention_heads=ATTENTION_HEADS,
     rms_norm_eps=1e-6,
@@ -104,6 +106,7 @@ if __name__ == "__main__":
     rng = random.Random(42)
 
     model = Model(model_args)
+    print(model)
     mx.eval(model.parameters())
     n_params = count_parameters(model)
     print(f"params: {n_params}")
@@ -129,3 +132,12 @@ if __name__ == "__main__":
     sa, da = evaluate(model, 1000, random.Random(12345))
     print(f"FINAL  | seq {sa:.3f} dig {da:.3f}")
     mx.savez(f"checkpoint/best_{n_params}.npz", **dict(tree_flatten(model.parameters())))
+
+
+
+#  44600 | loss 0.3263 | 450s
+#  44700 | loss 0.3106 | 451s
+#  44800 | loss 0.3851 | 452s
+#  44900 | loss 0.3321 | 453s
+#  45000 | loss 0.4110 | 454s
+# FINAL  | seq 0.118 dig 0.822
