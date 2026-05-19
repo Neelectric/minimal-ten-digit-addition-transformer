@@ -1,2 +1,22 @@
 __pycache__/
 .ruff_cache/
+
+
+
+# 1. Ignore everything inside the media folder
+media/*
+
+# 2. Un-ignore the videos directory so Git can look inside
+!media/videos/
+
+# 3. Ignore everything inside the videos directory...
+media/videos/**/*
+
+# 4. ...except directories (so Git can see your script_name and resolution folders)
+!media/videos/**/*/
+
+# 5. ...and explicitly un-ignore the .mp4 files
+!media/videos/**/*.mp4
+
+# 6. Re-ignore partial_movie_files so partial .mp4s are blocked
+media/videos/**/partial_movie_files/

@@ -25,7 +25,7 @@ MAX_STEPS = 45_001
 BATCH_SIZE = 128
 LR = 0.01
 
-NUM_LAYERS = 2
+NUM_LAYERS = 1
 
 model_args = ModelArgs(
     model_type="qwen3",

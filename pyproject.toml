@@ -6,7 +6,12 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "asitop>=0.0.24",
+    "ipykernel>=7.2.0",
+    "manim>=0.20.1",
     "mlx>=0.31.2",
     "mlx-lm>=0.31.3",
     "numpy>=2.4.4",
+    "pip>=26.1",
+    "scipy>=1.17.1",
+    "tqdm>=4.67.3",
 ]
